@@ -24,23 +24,47 @@ const WaitlistDialog = ({ open, onOpenChange, defaultTab = "driver" }: WaitlistD
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate API call with dummy handler
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      type: formData.get('type'),
+      name: formData.get('name'),
+      email: formData.get('email'),
+      phone: formData.get('phone'),
+      city: formData.get('city'),
+      vehicleType: formData.get('vehicleType'),
+      message: formData.get('message'),
+    };
 
-    setIsSubmitting(false);
-    setIsSuccess(true);
+    try {
+      await fetch('https://script.google.com/macros/s/AKfycbw2vAYvlncn9CWb261ebeQFwYvl51iX47wzgOcpbF_XIErqZvDLN1c5TVTIchimgWt48Q/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
 
-    // Show success toast
-    toast({
-      title: "🎉 You're on the waitlist!",
-      description: "We'll notify you when we launch in your city.",
-    });
+      setIsSubmitting(false);
+      setIsSuccess(true);
 
-    // Reset after 3 seconds
-    setTimeout(() => {
-      setIsSuccess(false);
-      onOpenChange(false);
-    }, 3000);
+      toast({
+        title: "🎉 You're on the waitlist!",
+        description: "We'll notify you when we launch in your city.",
+      });
+
+      setTimeout(() => {
+        setIsSuccess(false);
+        onOpenChange(false);
+      }, 3000);
+    } catch (error) {
+      setIsSubmitting(false);
+      toast({
+        title: "Something went wrong",
+        description: "Please try again later.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -68,24 +92,25 @@ const WaitlistDialog = ({ open, onOpenChange, defaultTab = "driver" }: WaitlistD
 
             <TabsContent value="driver">
               <form onSubmit={handleSubmit} className="space-y-4 mt-4">
+                <input type="hidden" name="type" value="driver" />
                 <div className="space-y-2">
                   <Label htmlFor="driver-name">Full Name *</Label>
-                  <Input id="driver-name" required placeholder="John Doe" />
+                  <Input id="driver-name" name="name" required placeholder="John Doe" />
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="driver-email">Email *</Label>
-                  <Input id="driver-email" type="email" required placeholder="john@example.com" />
+                  <Input id="driver-email" name="email" type="email" required placeholder="john@example.com" />
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="driver-phone">Phone Number *</Label>
-                  <Input id="driver-phone" type="tel" required placeholder="+254 700 000 000" />
+                  <Input id="driver-phone" name="phone" type="tel" required placeholder="+254 700 000 000" />
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="driver-city">City *</Label>
-                  <Select required>
+                  <Select name="city" required>
                     <SelectTrigger id="driver-city">
                       <SelectValue placeholder="Select your city" />
                     </SelectTrigger>
@@ -101,7 +126,7 @@ const WaitlistDialog = ({ open, onOpenChange, defaultTab = "driver" }: WaitlistD
 
                 <div className="space-y-2">
                   <Label htmlFor="vehicle-type">Vehicle Type *</Label>
-                  <Select required>
+                  <Select name="vehicleType" required>
                     <SelectTrigger id="vehicle-type">
                       <SelectValue placeholder="Select vehicle type" />
                     </SelectTrigger>
@@ -116,7 +141,7 @@ const WaitlistDialog = ({ open, onOpenChange, defaultTab = "driver" }: WaitlistD
 
                 <div className="space-y-2">
                   <Label htmlFor="driver-message">Message (Optional)</Label>
-                  <Textarea id="driver-message" placeholder="Tell us about your driving experience..." />
+                  <Textarea id="driver-message" name="message" placeholder="Tell us about your driving experience..." />
                 </div>
 
                 <Button type="submit" className="w-full" disabled={isSubmitting}>
@@ -134,24 +159,25 @@ const WaitlistDialog = ({ open, onOpenChange, defaultTab = "driver" }: WaitlistD
 
             <TabsContent value="passenger">
               <form onSubmit={handleSubmit} className="space-y-4 mt-4">
+                <input type="hidden" name="type" value="passenger" />
                 <div className="space-y-2">
                   <Label htmlFor="passenger-name">Full Name *</Label>
-                  <Input id="passenger-name" required placeholder="Jane Doe" />
+                  <Input id="passenger-name" name="name" required placeholder="Jane Doe" />
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="passenger-email">Email *</Label>
-                  <Input id="passenger-email" type="email" required placeholder="jane@example.com" />
+                  <Input id="passenger-email" name="email" type="email" required placeholder="jane@example.com" />
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="passenger-phone">Phone Number *</Label>
-                  <Input id="passenger-phone" type="tel" required placeholder="+254 700 000 000" />
+                  <Input id="passenger-phone" name="phone" type="tel" required placeholder="+254 700 000 000" />
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="passenger-city">City *</Label>
-                  <Select required>
+                  <Select name="city" required>
                     <SelectTrigger id="passenger-city">
                       <SelectValue placeholder="Select your city" />
                     </SelectTrigger>
@@ -167,7 +193,7 @@ const WaitlistDialog = ({ open, onOpenChange, defaultTab = "driver" }: WaitlistD
 
                 <div className="space-y-2">
                   <Label htmlFor="passenger-message">Message (Optional)</Label>
-                  <Textarea id="passenger-message" placeholder="Any questions or feedback?" />
+                  <Textarea id="passenger-message" name="message" placeholder="Any questions or feedback?" />
                 </div>
 
                 <Button type="submit" className="w-full" disabled={isSubmitting}>
