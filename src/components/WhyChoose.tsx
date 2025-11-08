@@ -32,7 +32,7 @@ const WhyChoose = () => {
   ];
 
   return (
-    <section className="py-20 bg-background" ref={ref}>
+    <section id="why-choose" className="py-20 bg-background" ref={ref}>
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 50 }}

@@ -34,9 +34,12 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="#" className="text-secondary-foreground/80 hover:text-primary transition-colors">
+                <button 
+                  onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="text-secondary-foreground/80 hover:text-primary transition-colors"
+                >
                   Contact
-                </a>
+                </button>
               </li>
               <li>
                 <a href="#" className="text-secondary-foreground/80 hover:text-primary transition-colors">
@@ -51,21 +54,27 @@ const Footer = () => {
             <h4 className="font-semibold mb-4 text-primary">Follow Us</h4>
             <div className="flex gap-4">
               <a
-                href="#"
+                href="https://instagram.com/kabu254"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 bg-primary rounded-full flex items-center justify-center hover:bg-primary/90 transition-colors"
                 aria-label="Instagram"
               >
                 <Instagram className="w-5 h-5 text-primary-foreground" />
               </a>
               <a
-                href="#"
+                href="https://twitter.com/kabu254"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 bg-primary rounded-full flex items-center justify-center hover:bg-primary/90 transition-colors"
                 aria-label="Twitter"
               >
                 <Twitter className="w-5 h-5 text-primary-foreground" />
               </a>
               <a
-                href="#"
+                href="https://linkedin.com/company/kabu254"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 bg-primary rounded-full flex items-center justify-center hover:bg-primary/90 transition-colors"
                 aria-label="LinkedIn"
               >

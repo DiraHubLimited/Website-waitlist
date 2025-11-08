@@ -14,7 +14,7 @@ const CTABanner = ({ onDriverClick, onPassengerClick }: CTABannerProps) => {
   const isInView = useInView(ref, { once: true });
 
   return (
-    <section className="relative py-32 overflow-hidden" ref={ref}>
+    <section id="contact" className="relative py-32 overflow-hidden" ref={ref}>
       {/* Background */}
       <div className="absolute inset-0 z-0">
         <img
