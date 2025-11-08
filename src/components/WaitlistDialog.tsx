@@ -18,21 +18,71 @@ interface WaitlistDialogProps {
 const WaitlistDialog = ({ open, onOpenChange, defaultTab = "driver" }: WaitlistDialogProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [driverCity, setDriverCity] = useState("");
+  const [driverVehicle, setDriverVehicle] = useState("");
+  const [passengerCity, setPassengerCity] = useState("");
   const { toast } = useToast();
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleDriverSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     const formData = new FormData(e.currentTarget);
     const data = {
-      type: formData.get('type'),
+      type: 'driver',
       name: formData.get('name'),
       email: formData.get('email'),
       phone: formData.get('phone'),
-      city: formData.get('city'),
-      vehicleType: formData.get('vehicleType'),
-      message: formData.get('message'),
+      city: driverCity,
+      vehicleType: driverVehicle,
+      message: formData.get('message') || '',
+    };
+
+    try {
+      await fetch('https://script.google.com/macros/s/AKfycbw2vAYvlncn9CWb261ebeQFwYvl51iX47wzgOcpbF_XIErqZvDLN1c5TVTIchimgWt48Q/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      setIsSubmitting(false);
+      setIsSuccess(true);
+
+      toast({
+        title: "🎉 You're on the waitlist!",
+        description: "We'll notify you when we launch in your city.",
+      });
+
+      setTimeout(() => {
+        setIsSuccess(false);
+        onOpenChange(false);
+      }, 3000);
+    } catch (error) {
+      setIsSubmitting(false);
+      toast({
+        title: "Something went wrong",
+        description: "Please try again later.",
+        variant: "destructive",
+      });
+    }
+  };
+
+  const handlePassengerSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      type: 'passenger',
+      name: formData.get('name'),
+      email: formData.get('email'),
+      phone: formData.get('phone'),
+      city: passengerCity,
+      vehicleType: '',
+      message: formData.get('message') || '',
     };
 
     try {
@@ -91,8 +141,7 @@ const WaitlistDialog = ({ open, onOpenChange, defaultTab = "driver" }: WaitlistD
             </TabsList>
 
             <TabsContent value="driver">
-              <form onSubmit={handleSubmit} className="space-y-4 mt-4">
-                <input type="hidden" name="type" value="driver" />
+              <form onSubmit={handleDriverSubmit} className="space-y-4 mt-4">
                 <div className="space-y-2">
                   <Label htmlFor="driver-name">Full Name *</Label>
                   <Input id="driver-name" name="name" required placeholder="John Doe" />
@@ -110,7 +159,7 @@ const WaitlistDialog = ({ open, onOpenChange, defaultTab = "driver" }: WaitlistD
 
                 <div className="space-y-2">
                   <Label htmlFor="driver-city">City *</Label>
-                  <Select name="city" required>
+                  <Select value={driverCity} onValueChange={setDriverCity} required>
                     <SelectTrigger id="driver-city">
                       <SelectValue placeholder="Select your city" />
                     </SelectTrigger>
@@ -126,7 +175,7 @@ const WaitlistDialog = ({ open, onOpenChange, defaultTab = "driver" }: WaitlistD
 
                 <div className="space-y-2">
                   <Label htmlFor="vehicle-type">Vehicle Type *</Label>
-                  <Select name="vehicleType" required>
+                  <Select value={driverVehicle} onValueChange={setDriverVehicle} required>
                     <SelectTrigger id="vehicle-type">
                       <SelectValue placeholder="Select vehicle type" />
                     </SelectTrigger>
@@ -158,8 +207,7 @@ const WaitlistDialog = ({ open, onOpenChange, defaultTab = "driver" }: WaitlistD
             </TabsContent>
 
             <TabsContent value="passenger">
-              <form onSubmit={handleSubmit} className="space-y-4 mt-4">
-                <input type="hidden" name="type" value="passenger" />
+              <form onSubmit={handlePassengerSubmit} className="space-y-4 mt-4">
                 <div className="space-y-2">
                   <Label htmlFor="passenger-name">Full Name *</Label>
                   <Input id="passenger-name" name="name" required placeholder="Jane Doe" />
@@ -177,7 +225,7 @@ const WaitlistDialog = ({ open, onOpenChange, defaultTab = "driver" }: WaitlistD
 
                 <div className="space-y-2">
                   <Label htmlFor="passenger-city">City *</Label>
-                  <Select name="city" required>
+                  <Select value={passengerCity} onValueChange={setPassengerCity} required>
                     <SelectTrigger id="passenger-city">
                       <SelectValue placeholder="Select your city" />
                     </SelectTrigger>
