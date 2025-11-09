@@ -39,9 +39,9 @@ const About = () => {
               <h3 className="text-2xl font-bold">Kabu</h3>
             </div>
             <p className="text-lg mb-4 font-semibold">Subscription Model</p>
-            <p className="text-3xl font-bold mb-2">Driver keeps 100%</p>
+            <p className="text-3xl font-bold mb-2">Drivers Keep 100% of Fares</p>
             <p className="text-sm opacity-90">
-              Fixed weekly subscription, unlimited rides, zero commission per trip
+              Simple weekly subscription, unlimited rides, you keep every shilling you earn
             </p>
           </motion.div>
 

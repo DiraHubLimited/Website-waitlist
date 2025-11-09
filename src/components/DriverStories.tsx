@@ -13,7 +13,7 @@ const DriverStories = () => {
     {
       image: driverImage,
       title: "Empowering Drivers",
-      description: "Meet John, a Kabu driver who's now earning 30% more than with other platforms. Fair commissions mean he can support his family better and plan for the future.",
+      description: "Meet John, a Kabu driver who's now earning 30% more than with other platforms. By keeping 100% of every fare, he can support his family better and plan for the future.",
       stat: "30% Higher Earnings"
     },
     {

@@ -19,34 +19,31 @@ const ContactSection = () => {
     setIsSubmitting(true);
 
     const formData = new FormData(e.currentTarget);
-    const data = {
-      name: formData.get("name"),
-      email: formData.get("email"),
-      phone: formData.get("phone"),
-      message: formData.get("message"),
-      type: "contact",
-      recipientEmail: "daltone.dev@gmail.com"
-    };
 
     try {
-      // Send email via mailto (opens email client)
-      const subject = encodeURIComponent(`Contact Form: ${data.name}`);
-      const body = encodeURIComponent(
-        `Name: ${data.name}\nEmail: ${data.email}\nPhone: ${data.phone}\n\nMessage:\n${data.message}`
-      );
-      window.location.href = `mailto:daltone.dev@gmail.com?subject=${subject}&body=${body}`;
-
-      toast({
-        title: "Email client opened",
-        description: "Please send the email from your email client.",
+      // Send email via Formspree
+      const response = await fetch("https://formspree.io/f/xanyveqb", {
+        method: "POST",
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
       });
 
-      // Reset form
-      (e.target as HTMLFormElement).reset();
+      if (response.ok) {
+        toast({
+          title: "Message sent!",
+          description: "We'll get back to you as soon as possible.",
+        });
+        // Reset form
+        (e.target as HTMLFormElement).reset();
+      } else {
+        throw new Error("Failed to send");
+      }
     } catch (error) {
       toast({
         title: "Error",
-        description: "Failed to open email client. Please try again.",
+        description: "Failed to send message. Please try again or email us directly at daltone.dev@gmail.com",
         variant: "destructive",
       });
     } finally {

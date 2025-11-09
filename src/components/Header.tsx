@@ -18,12 +18,7 @@ const Header = () => {
     setMobileMenuOpen(false);
   };
 
-  const handleDownload = (platform: string) => {
-    // Placeholder for download functionality
-    window.open(platform === "android" 
-      ? "https://play.google.com/store" 
-      : "https://apps.apple.com", "_blank");
-  };
+  // Placeholder - download functionality coming soon
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
@@ -68,12 +63,6 @@ const Header = () => {
             >
               Contact
             </button>
-            <button
-              onClick={() => scrollToSection("download")}
-              className="text-foreground hover:text-primary transition-colors font-medium"
-            >
-              Download
-            </button>
             
             {/* Download Dropdown */}
             <DropdownMenu>
@@ -84,19 +73,13 @@ const Header = () => {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-48 bg-popover border border-border">
-                <DropdownMenuItem 
-                  onClick={() => handleDownload("android")}
-                  className="cursor-pointer hover:bg-accent"
-                >
+                <DropdownMenuItem className="cursor-default">
                   <span className="text-lg mr-2">🤖</span>
-                  Android
+                  Android (Coming Soon)
                 </DropdownMenuItem>
-                <DropdownMenuItem 
-                  onClick={() => handleDownload("ios")}
-                  className="cursor-pointer hover:bg-accent"
-                >
+                <DropdownMenuItem className="cursor-default">
                   <span className="text-lg mr-2">🍎</span>
-                  iOS
+                  iOS (Coming Soon)
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -150,20 +133,20 @@ const Header = () => {
               
               <div className="pt-4 border-t border-border flex flex-col gap-3">
                 <Button
-                  onClick={() => handleDownload("android")}
                   variant="default"
-                  className="w-full justify-start bg-primary text-primary-foreground hover:bg-primary/90"
+                  className="w-full justify-start bg-primary text-primary-foreground cursor-default opacity-75"
+                  disabled
                 >
                   <span className="text-lg mr-2">🤖</span>
-                  Download for Android
+                  Android (Coming Soon)
                 </Button>
                 <Button
-                  onClick={() => handleDownload("ios")}
                   variant="default"
-                  className="w-full justify-start bg-primary text-primary-foreground hover:bg-primary/90"
+                  className="w-full justify-start bg-primary text-primary-foreground cursor-default opacity-75"
+                  disabled
                 >
                   <span className="text-lg mr-2">🍎</span>
-                  Download for iOS
+                  iOS (Coming Soon)
                 </Button>
               </div>
             </nav>

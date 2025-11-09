@@ -9,11 +9,7 @@ const DownloadSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
 
-  const handleDownload = (platform: string) => {
-    window.open(platform === "android" 
-      ? "https://play.google.com/store" 
-      : "https://apps.apple.com", "_blank");
-  };
+  // Placeholder - download functionality coming soon
 
   return (
     <section className="relative py-20 overflow-hidden" ref={ref} id="download">
@@ -51,20 +47,20 @@ const DownloadSection = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button
               size="lg"
-              onClick={() => handleDownload("android")}
-              className="text-lg px-8 py-6 hover-lift bg-primary text-primary-foreground hover:bg-primary/90 min-w-[200px]"
+              className="text-lg px-8 py-6 min-w-[200px] cursor-default opacity-75"
+              disabled
             >
               <span className="text-2xl mr-3">🤖</span>
-              Android
+              Android (Coming Soon)
             </Button>
             <Button
               size="lg"
-              onClick={() => handleDownload("ios")}
               variant="outline"
-              className="text-lg px-8 py-6 hover-lift min-w-[200px]"
+              className="text-lg px-8 py-6 min-w-[200px] cursor-default opacity-75"
+              disabled
             >
               <span className="text-2xl mr-3">🍎</span>
-              iOS
+              iOS (Coming Soon)
             </Button>
           </div>
 
