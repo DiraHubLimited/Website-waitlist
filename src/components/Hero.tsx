@@ -62,7 +62,7 @@ const Hero = ({ onDriverClick, onPassengerClick }: HeroProps) => {
               className="text-lg px-8 py-6 hover-lift bg-primary text-primary-foreground hover:bg-primary/90"
               onClick={onDriverClick}
             >
-              Join as Driver
+              Join Driver Waitlist
             </Button>
             <Button
               size="lg"
@@ -70,7 +70,7 @@ const Hero = ({ onDriverClick, onPassengerClick }: HeroProps) => {
               className="text-lg px-8 py-6 hover-lift"
               onClick={onPassengerClick}
             >
-              Join as Passenger
+              Join Passenger Waitlist
             </Button>
           </motion.div>
         </motion.div>

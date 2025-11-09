@@ -87,8 +87,13 @@ const Footer = () => {
         {/* Bottom */}
         <div className="border-t border-secondary-foreground/20 pt-8 text-center text-secondary-foreground/60">
           <p>
-            © 2025 Kabu. Built with ❤️ by{" "}
-            <a href="#" className="text-primary hover:underline">
+            © 2026 Kabu. All rights reserved. Built with ❤️ by{" "}
+            <a 
+              href="https://dirahub.co.ke" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:underline"
+            >
               Dira Hub
             </a>{" "}
             — Empowering African Innovation.

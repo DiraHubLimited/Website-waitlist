@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Quote } from "lucide-react";
+import heroImage from "@/assets/hero-nairobi.jpg";
 
 const Testimonials = () => {
   const ref = useRef(null);
@@ -26,8 +27,18 @@ const Testimonials = () => {
   ];
 
   return (
-    <section className="py-20 bg-background" ref={ref}>
-      <div className="container mx-auto px-4">
+    <section className="relative py-20 overflow-hidden" ref={ref}>
+      {/* Background with city image */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src={heroImage}
+          alt="Nairobi city"
+          className="w-full h-full object-cover opacity-20"
+        />
+        <div className="absolute inset-0 bg-background/80" />
+      </div>
+      
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}

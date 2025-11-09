@@ -68,6 +68,12 @@ const Header = () => {
             >
               Contact
             </button>
+            <button
+              onClick={() => scrollToSection("download")}
+              className="text-foreground hover:text-primary transition-colors font-medium"
+            >
+              Download
+            </button>
             
             {/* Download Dropdown */}
             <DropdownMenu>

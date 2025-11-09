@@ -3,6 +3,7 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Smartphone } from "lucide-react";
+import heroImage from "@/assets/hero-nairobi.jpg";
 
 const DownloadSection = () => {
   const ref = useRef(null);
@@ -15,8 +16,18 @@ const DownloadSection = () => {
   };
 
   return (
-    <section className="py-20 bg-muted/30" ref={ref} id="download">
-      <div className="container mx-auto px-4">
+    <section className="relative py-20 overflow-hidden" ref={ref} id="download">
+      {/* Background with city image */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src={heroImage}
+          alt="Nairobi city"
+          className="w-full h-full object-cover opacity-20"
+        />
+        <div className="absolute inset-0 bg-muted/80" />
+      </div>
+      
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -57,7 +68,7 @@ const DownloadSection = () => {
             </Button>
           </div>
 
-          <p className="text-sm text-muted-foreground mt-8">
+          <p className="text-sm text-muted-foreground mt-8 animate-blink-color">
             Coming soon to your app store
           </p>
         </motion.div>

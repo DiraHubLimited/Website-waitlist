@@ -6,9 +6,11 @@ import HowItWorks from "@/components/HowItWorks";
 import WhyChoose from "@/components/WhyChoose";
 import WaitlistDialog from "@/components/WaitlistDialog";
 import Vision from "@/components/Vision";
+import Benefits from "@/components/Benefits";
+import DriverStories from "@/components/DriverStories";
 import Testimonials from "@/components/Testimonials";
 import DownloadSection from "@/components/DownloadSection";
-import CTABanner from "@/components/CTABanner";
+import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -33,10 +35,12 @@ const Index = () => {
         <About />
         <HowItWorks />
         <WhyChoose />
+        <Benefits />
         <Vision />
+        <DriverStories />
         <Testimonials />
         <DownloadSection />
-        <CTABanner onDriverClick={openDriverWaitlist} onPassengerClick={openPassengerWaitlist} />
+        <ContactSection />
         <Footer />
         <WaitlistDialog open={waitlistOpen} onOpenChange={setWaitlistOpen} defaultTab={waitlistTab} />
       </main>

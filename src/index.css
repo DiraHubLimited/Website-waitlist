@@ -146,4 +146,27 @@ All colors MUST be HSL.
   .gradient-overlay {
     background: linear-gradient(180deg, transparent 0%, hsl(var(--background) / 0.9) 100%);
   }
+  
+  @keyframes blink-color {
+    0%, 100% { 
+      opacity: 1; 
+      color: hsl(var(--primary));
+    }
+    25% { 
+      opacity: 0.6; 
+      color: hsl(var(--accent));
+    }
+    50% { 
+      opacity: 1; 
+      color: hsl(var(--muted-foreground));
+    }
+    75% { 
+      opacity: 0.6; 
+      color: hsl(var(--secondary));
+    }
+  }
+  
+  .animate-blink-color {
+    animation: blink-color 3s ease-in-out infinite;
+  }
 }
