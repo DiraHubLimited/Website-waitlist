@@ -13,8 +13,8 @@ const DriverStories = () => {
     {
       image: driverImage,
       title: "Empowering Drivers",
-      description: "Meet John, a Kabu driver who's now earning 30% more than with other platforms. By keeping 100% of every fare, he can support his family better and plan for the future.",
-      stat: "30% Higher Earnings"
+      description: "By keeping 100% of every fare with zero commissions, drivers can support their families better and plan for the future with confidence and financial stability.",
+      stat: "Higher Earnings"
     },
     {
       image: communityImage,
@@ -25,7 +25,7 @@ const DriverStories = () => {
     {
       image: passengersImage,
       title: "Safe & Reliable",
-      description: "Sarah takes Kabu daily to work. She loves the transparent pricing, verified drivers, and real-time tracking that keeps her safe every journey.",
+      description: "Experience transparent pricing, verified drivers, and real-time tracking that keeps you safe on every journey across Kenya.",
       stat: "5-Star Safety Rating"
     }
   ];

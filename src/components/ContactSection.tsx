@@ -14,41 +14,36 @@ const ContactSection = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     const formData = new FormData(e.currentTarget);
+    const name = formData.get('name');
+    const email = formData.get('email');
+    const phone = formData.get('phone') || 'Not provided';
+    const message = formData.get('message');
 
-    try {
-      // Send email via Formspree
-      const response = await fetch("https://formspree.io/f/xanyveqb", {
-        method: "POST",
-        body: formData,
-        headers: {
-          'Accept': 'application/json'
-        }
-      });
+    // Create mailto link
+    const subject = encodeURIComponent(`Kabu Contact Form: Message from ${name}`);
+    const body = encodeURIComponent(
+      `Name: ${name}\n` +
+      `Email: ${email}\n` +
+      `Phone: ${phone}\n\n` +
+      `Message:\n${message}`
+    );
+    
+    window.location.href = `mailto:daltone.dev@gmail.com?subject=${subject}&body=${body}`;
 
-      if (response.ok) {
-        toast({
-          title: "Message sent!",
-          description: "We'll get back to you as soon as possible.",
-        });
-        // Reset form
-        (e.target as HTMLFormElement).reset();
-      } else {
-        throw new Error("Failed to send");
-      }
-    } catch (error) {
+    // Reset form and show confirmation
+    setTimeout(() => {
       toast({
-        title: "Error",
-        description: "Failed to send message. Please try again or email us directly at daltone.dev@gmail.com",
-        variant: "destructive",
+        title: "Email client opened!",
+        description: "Please send the email from your email client.",
       });
-    } finally {
+      (e.target as HTMLFormElement).reset();
       setIsSubmitting(false);
-    }
+    }, 500);
   };
 
   return (

@@ -20,7 +20,7 @@ const Benefits = () => {
     {
       icon: DollarSign,
       title: "Fair Earnings",
-      description: "Drivers keep more of what they earn. Lower commissions mean better pay for honest work.",
+      description: "For Drivers: Pay a fixed weekly subscription of KSh 1,000 and enjoy unlimited rides with zero commissions — keep 100% of your earnings.",
       color: "text-primary"
     },
     {

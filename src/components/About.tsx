@@ -20,8 +20,8 @@ const About = () => {
             Built in Kenya. Powered by Fairness.
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-            Kabu is reimagining mobility for Kenyans — a local solution where drivers earn more
-            and riders pay less. With our subscription-based system, drivers keep all their
+            Kabu is reimagining mobility for Kenyans — a local solution where drivers keep 100%
+            of their earnings with zero commissions. With our subscription-based system, drivers keep all their
             earnings and passengers enjoy reliable, affordable rides.
           </p>
         </motion.div>

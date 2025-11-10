@@ -7,6 +7,7 @@ import WhyChoose from "@/components/WhyChoose";
 import WaitlistDialog from "@/components/WaitlistDialog";
 import Vision from "@/components/Vision";
 import Benefits from "@/components/Benefits";
+import CTAWaitlist from "@/components/CTAWaitlist";
 import DriverStories from "@/components/DriverStories";
 import Testimonials from "@/components/Testimonials";
 import DownloadSection from "@/components/DownloadSection";
@@ -37,6 +38,7 @@ const Index = () => {
         <WhyChoose />
         <Benefits />
         <Vision />
+        <CTAWaitlist onDriverClick={openDriverWaitlist} onPassengerClick={openPassengerWaitlist} />
         <DriverStories />
         <Testimonials />
         <DownloadSection />
