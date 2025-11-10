@@ -73,15 +73,14 @@ const ContactSection = () => {
           >
             <div className="bg-card rounded-2xl overflow-hidden shadow-lg h-[400px]">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.7687165!2d36.9311!3d-1.2621!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f17a5c8f4b4e1%3A0x8e3f9a5a5a5a5a5a!2sChandaria%20Innovation%20and%20Incubation%20Center%2C%20Kenyatta%20University!5e0!3m2!1sen!2ske!4v1234567890"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.7511810652827!2d36.93408947496521!3d-1.180979535863397!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f3f7e89c7fdb5%3A0x7403bb72f5e92b65!2sChandaria%20Business%20Innovation%20and%20Incubation%20Centre%2C%20Kenyatta%20University!5e0!3m2!1sen!2ske!4v1731367480000!5m2!1sen!2ske"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Kabu Location"
-              />
+              ></iframe>
             </div>
 
             <div className="space-y-4">
@@ -104,7 +103,7 @@ const ContactSection = () => {
                     href="mailto:daltone.dev@gmail.com" 
                     className="text-muted-foreground hover:text-primary transition-colors"
                   >
-                    daltone.dev@gmail.com
+                    info.kabu.co.ke
                   </a>
                 </div>
               </div>
@@ -124,72 +123,37 @@ const ContactSection = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8 }}
+            className="flex flex-col items-center justify-center bg-card p-10 rounded-2xl shadow-lg text-center space-y-6"
           >
-            <form onSubmit={handleSubmit} className="space-y-6 bg-card p-8 rounded-2xl shadow-lg">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium mb-2 text-foreground">
-                  Name *
-                </label>
-                <Input
-                  id="name"
-                  name="name"
-                  required
-                  placeholder="Your name"
-                  className="w-full"
-                />
-              </div>
+            <h3 className="text-2xl font-semibold text-foreground">
+              Want to get in touch?
+            </h3>
+            <p className="text-muted-foreground max-w-md">
+              We’d love to hear from you! Click below to send us an email — your browser will open Gmail with our address pre-filled.
+            </p>
 
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium mb-2 text-foreground">
-                  Email *
-                </label>
-                <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  required
-                  placeholder="your.email@example.com"
-                  className="w-full"
-                />
-              </div>
+            <a
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=daltone.dev@gmail.com&su=Inquiry%20from%20Kabu%20Website&body=Hello%20Kabu%20team%2C%0A%0AI'd%20like%20to%20get%20in%20touch%20regarding..."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center px-6 py-3 text-lg font-medium text-primary-foreground bg-primary rounded-xl hover:bg-primary/90 transition-colors"
+            >
+              Send us an email
+            </a>
 
-              <div>
-                <label htmlFor="phone" className="block text-sm font-medium mb-2 text-foreground">
-                  Phone
-                </label>
-                <Input
-                  id="phone"
-                  name="phone"
-                  type="tel"
-                  placeholder="+254 700 000 000"
-                  className="w-full"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium mb-2 text-foreground">
-                  Message *
-                </label>
-                <Textarea
-                  id="message"
-                  name="message"
-                  required
-                  placeholder="Tell us how we can help..."
-                  rows={5}
-                  className="w-full resize-none"
-                />
-              </div>
-
-              <Button
-                type="submit"
-                size="lg"
-                className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
-                disabled={isSubmitting}
+            <p className="text-sm text-muted-foreground">
+              or email us directly at{" "}
+              <a
+                href="mailto:daltone.dev@gmail.com"
+                className="text-primary hover:underline"
               >
-                {isSubmitting ? "Sending..." : "Send Message"}
-              </Button>
-            </form>
+                info.kabu.co.ke
+              </a>
+            </p>
           </motion.div>
+
+
+
         </div>
       </div>
     </section>
